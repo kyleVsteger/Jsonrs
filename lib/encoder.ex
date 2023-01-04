@@ -38,12 +38,6 @@ defimpl Jsonrs.Encoder, for: List do
   def encode(list), do: Enum.map(list, &Jsonrs.Encoder.encode/1)
 end
 
-defimpl Jsonrs.Encoder, for: Tuple do
-  def encode(tuple) do
-    tuple |> Tuple.to_list() |> Jsonrs.Encoder.encode()
-  end
-end
-
 defimpl Jsonrs.Encoder, for: [Date, Time, NaiveDateTime, DateTime] do
   def encode(d), do: d |> @for.to_iso8601()
 end
